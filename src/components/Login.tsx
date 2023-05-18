@@ -1,6 +1,8 @@
-import { Button, Card, Form, FormItemProps, Input } from 'antd';
 import '../style/Login.scss';
+import { Button, Card, Form, FormItemProps, Input } from 'antd';
 import { useState } from 'react';
+import { BASE_URL } from '../utils/constants';
+import { getHeaders } from '../utils/utils';
 
 export const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,12 +21,8 @@ export const Login = () => {
     setValidadeMessage("");
 
     try {
-      const response = await fetch("https://v3.football.api-sports.io/status", {
-        headers: {
-          "x-apisports-key": values.apiKey,
-          "x-rapidapi-key": values.apiKey,
-          "x-rapidapi-host": "v3.football.api-sports.io"
-        },
+      const response = await fetch(BASE_URL + "/status", {
+        headers: getHeaders(values.apiKey),
         method: "GET",
         redirect: 'follow'
       });

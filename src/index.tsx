@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { Dashboard } from './components/Dashboard';
 import { Login } from './components/Login';
+import { updateLocalStorageData } from './utils/utils';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +13,8 @@ document.body.style.margin = "0";
 document.body.style.height = "100%";
 
 const apiKey = localStorage.getItem('api-key');
+
+updateLocalStorageData();
 
 root.render(
   <React.StrictMode>
