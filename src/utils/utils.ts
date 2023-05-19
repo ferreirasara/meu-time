@@ -3,16 +3,17 @@ import { BASE_URL } from "./constants";
 
 export const getHeaders = (apiKey?: string) => {
   if (!apiKey) apiKey = localStorage.getItem('api-key') || "";
+  console.log("🚀 | getHeaders | apiKey:", apiKey);
 
   return {
     "x-apisports-key": apiKey,
-    "x-rapidapi-key": apiKey,
-    "x-rapidapi-host": "v3.football.api-sports.io"
+    // "x-rapidapi-key": apiKey,
+    // "x-rapidapi-host": "v3.football.api-sports.io"
   }
 }
 
 export const getStatusFromAPI = async (apiKey?: string) => {
-  const response = await fetch(BASE_URL + "/status", {
+  const response = await fetch(encodeURI(BASE_URL + "/status"), {
     headers: getHeaders(apiKey),
     method: "GET",
     redirect: 'follow'
@@ -69,76 +70,81 @@ export const updateLocalStorageData = async () => {
 }
 
 export const getCountrisFromAPI = async (): Promise<Country[]> => {
-  const countriesResponse = await fetch(BASE_URL + "/countries", {
+  const countriesResponse = await fetch(encodeURI(BASE_URL + "/countries"), {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const countriesResponseJson = await countriesResponse?.json();
   const errors = countriesResponseJson?.errors;
+  await upsertRequestLocalStorageData();
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
-  await upsertRequestLocalStorageData();
   return countriesResponseJson?.response;
 }
 
 export const getLeaguesFromAPI = async (): Promise<League[]> => {
-  const leaguesResponse = await fetch(BASE_URL + "/leagues", {
+  const leaguesResponse = await fetch(encodeURI(BASE_URL + "/leagues"), {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const leaguesResponseJson = await leaguesResponse?.json();
   const errors = leaguesResponseJson?.errors;
+  await upsertRequestLocalStorageData();
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
-  await upsertRequestLocalStorageData();
   return leaguesResponseJson?.response;
 }
 
 export const getSeasonsFromAPI = async (): Promise<number[]> => {
-  const seasonsResponse = await fetch(BASE_URL + "/leagues/seasons", {
+  const seasonsResponse = await fetch(encodeURI(BASE_URL + "/leagues/seasons"), {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const seasonsResponseJson = await seasonsResponse?.json();
   const errors = seasonsResponseJson?.errors;
+  await upsertRequestLocalStorageData();
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
-  await upsertRequestLocalStorageData();
   return seasonsResponseJson?.response;
 }
 
 export const getTeamsFromAPI = async (leagueId: number, season: number): Promise<Team[]> => {
-  const teamsResponse = await fetch(BASE_URL + `/teams?league=${leagueId}&season=${season}`, {
+  const teamsResponse = await fetch(encodeURI(BASE_URL + `/teams?league=${leagueId}&season=${season}`), {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const teamsResponseJson = await teamsResponse?.json();
   const errors = teamsResponseJson?.errors;
+  await upsertRequestLocalStorageData();
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
-  await upsertRequestLocalStorageData();
   return teamsResponseJson?.response;
 }
 
 export const getPlayersFromAPI = async (leagueId: number, season: number, teamId: number): Promise<Player[]> => {
-  const playersResponse = await fetch(BASE_URL + `/players?league=${leagueId}&season=${season}&team=${teamId}`, {
+  const playersResponse = await fetch(encodeURI(BASE_URL + `/players?league=${leagueId}&season=${season}&team=${teamId}`), {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const playersResponseJson = await playersResponse?.json();
   const errors = playersResponseJson?.errors;
+  await upsertRequestLocalStorageData();
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
-  await upsertRequestLocalStorageData();
   return playersResponseJson?.response;
 }
 
 export const getGeneralStatsFromAPI = async (leagueId: number, season: number, teamId: number): Promise<TeamStats> => {
-  const playersResponse = await fetch(BASE_URL + `/teams/statistics?league=${leagueId}&season=${season}&team=${teamId}`, {
+  const teamStats = await fetch(encodeURI(BASE_URL + `/teams/statistics?league=${leagueId}&season=${season}&team=${teamId}`), {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
-  const playersResponseJson = await playersResponse?.json();
-  return playersResponseJson?.response;
+  const teamStatsJson = await teamStats?.json();
+  const errors = teamStatsJson?.errors;
+  await upsertRequestLocalStorageData();
+  if (errors?.token || errors?.requests) {
+    throw new Error(errors?.token || errors?.requests);
+  }
+  return teamStatsJson?.response;
 }
 
 export const getBaseDataFromLocalStorage = (): BaseData | undefined => {
