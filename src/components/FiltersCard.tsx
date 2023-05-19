@@ -53,6 +53,7 @@ export const FiltersCard = ({
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
           suffixIcon={selectedCountryLogo ? <Avatar size="small" src={selectedCountryLogo} /> : null}
+          style={{ width: 150 }}
         />
       </Form.Item>
 
@@ -72,13 +73,13 @@ export const FiltersCard = ({
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
           suffixIcon={selectedLeagueLogo ? <Avatar size="small" src={selectedLeagueLogo} /> : null}
+          style={{ width: 150 }}
         />
       </Form.Item>
 
       <Form.Item
         label="Temporada"
         name="season"
-        style={{ minWidth: 150 }}
       >
         <Select
           disabled={!selectedCountry || !selectedLeague}
@@ -88,6 +89,7 @@ export const FiltersCard = ({
           options={seasons?.map(season => ({ label: season, value: season }))}
           onChange={handleSelectSeason}
           value={selectedSeason}
+          style={{ width: 150 }}
         />
       </Form.Item>
 
@@ -105,6 +107,7 @@ export const FiltersCard = ({
           onChange={handleSelectTeam}
           value={selectedTeam}
           suffixIcon={selectedTeamLogo ? <Avatar size="small" src={selectedTeamLogo} /> : null}
+          style={{ width: 150 }}
         />
       </Form.Item>
     </Form>
