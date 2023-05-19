@@ -3,8 +3,9 @@ import { useState } from "react";
 import { FiltersCard } from "./FiltersCard";
 import { PlayersTable } from './PlayersTable';
 import { GeneralStats } from './GeneralStats';
-import { Alert, Col, Empty, Layout, Row, Typography, theme } from 'antd';
-import { Content, Header } from 'antd/es/layout/layout';
+import { Col, Empty, Layout, Row, theme } from 'antd';
+import { Content } from 'antd/es/layout/layout';
+import { AppHeader } from './AppHeader';
 
 export const Dashboard = () => {
   const {
@@ -24,9 +25,7 @@ export const Dashboard = () => {
   const showStats = !!selectedCountry && !!selectedLeague && !!selectedSeason && !!selectedTeam;
 
   return <Layout className="layout">
-    <Header style={{ display: 'flex', alignItems: 'center' }}>
-      <Typography.Text type='success' strong>Meu Time</Typography.Text>
-    </Header>
+    <AppHeader />
     <Content style={{ padding: '16px 36px', background: colorBgContainer, display: 'flex', justifyContent: 'center' }}>
       <div style={{ maxWidth: 1300 }}>
         <Row>
