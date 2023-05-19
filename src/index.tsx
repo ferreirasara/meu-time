@@ -10,6 +10,7 @@ const root = ReactDOM.createRoot(
 
 document.body.style.margin = "0";
 document.body.style.height = "100%";
+document.title = "Meu Time"
 
 const apiKey = localStorage.getItem('api-key');
 
