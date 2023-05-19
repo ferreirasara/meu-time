@@ -20,9 +20,11 @@ export const FiltersCard = ({
   const leagues = getLeaguesFromLocalStorage();
   const seasons = getSeasonsFromLocalStorage();
 
-  const filteredLeagues = useMemo(() => {
-    return leagues?.filter(league => league?.country?.name === selectedCountry)
-  }, [leagues, selectedCountry])
+  const filteredLeagues = useMemo(() => leagues?.filter(league => league?.country?.name === selectedCountry), [leagues, selectedCountry]);
+
+  const selectedCountryLogo = useMemo(() => countries?.find(cur => cur?.name === selectedCountry)?.flag, [countries, selectedCountry]);
+  const selectedLeagueLogo = useMemo(() => filteredLeagues?.find(cur => cur?.league?.id === selectedLeague)?.league?.logo, [filteredLeagues, leagues, selectedLeague]);
+  const selectedTeamLogo = useMemo(() => teams?.find(cur => cur?.team?.id === selectedTeam)?.team?.logo, [teams, selectedTeam]);
 
   useEffect(() => {
     if (selectedLeague && selectedSeason) {
@@ -32,56 +34,57 @@ export const FiltersCard = ({
     }
   }, [selectedLeague, selectedSeason])
 
-  return <Card>
+  return <Card style={{ maxWidth: 1300 }}>
     <Form
       layout="inline"
     >
       <Form.Item
         label="País"
         name="country"
-        style={{ width: 200 }}
       >
         <Select
           placeholder="Selecione um país"
           showSearch
+          showArrow={false}
           options={countries?.map(country => ({ label: country?.name, value: country?.name }))}
           onChange={handleSelectCountry}
           value={selectedCountry}
           filterOption={(input, option) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
-          suffixIcon={<Avatar size="small" src={countries?.find(cur => cur?.name === selectedCountry)?.flag} />}
+          suffixIcon={selectedCountryLogo ? <Avatar size="small" src={selectedCountryLogo} /> : null}
         />
       </Form.Item>
 
       <Form.Item
         label="Liga"
         name="league"
-        style={{ width: 200 }}
       >
         <Select
           disabled={!selectedCountry}
           placeholder="Selecione uma liga"
           showSearch
+          showArrow={false}
           options={filteredLeagues?.map(league => ({ label: league?.league?.name, value: league?.league?.id }))}
           onChange={handleSelectLeague}
           value={selectedLeague}
           filterOption={(input, option) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
-          suffixIcon={<Avatar size="small" src={filteredLeagues?.find(cur => cur?.league?.id === selectedLeague)?.league?.logo} />}
+          suffixIcon={selectedLeagueLogo ? <Avatar size="small" src={selectedLeagueLogo} /> : null}
         />
       </Form.Item>
 
       <Form.Item
         label="Temporada"
         name="season"
-        style={{ width: 200 }}
+        style={{ minWidth: 150 }}
       >
         <Select
           disabled={!selectedCountry || !selectedLeague}
           placeholder="Selecione uma temporada"
           showSearch
+          showArrow={false}
           options={seasons?.map(season => ({ label: season, value: season }))}
           onChange={handleSelectSeason}
           value={selectedSeason}
@@ -91,17 +94,17 @@ export const FiltersCard = ({
       <Form.Item
         label="Time"
         name="team"
-        style={{ width: 200 }}
       >
         <Select
           disabled={!selectedCountry || !selectedLeague || !selectedSeason}
           placeholder="Selecione um time"
           showSearch
+          showArrow={false}
           loading={loadingTeams}
           options={teams?.map(team => ({ label: team?.team?.name, value: team?.team?.id }))}
           onChange={handleSelectTeam}
           value={selectedTeam}
-          suffixIcon={<Avatar size="small" src={teams?.find(cur => cur?.team?.id === selectedTeam)?.team?.logo} />}
+          suffixIcon={selectedTeamLogo ? <Avatar size="small" src={selectedTeamLogo} /> : null}
         />
       </Form.Item>
     </Form>
