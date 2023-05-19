@@ -4,7 +4,12 @@ import { getGeneralStatsFromAPI } from "../utils/utils";
 import { GoalsChart } from "./GoalsChart";
 import { GeneralStatsData, GeneralStatsProps } from "../@types/types";
 
-export const GeneralStats = ({ selectedLeague, selectedSeason, selectedTeam }: GeneralStatsProps) => {
+export const GeneralStats = ({
+  selectedLeague,
+  selectedSeason,
+  selectedTeam,
+  handleError,
+}: GeneralStatsProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<GeneralStatsData>();
 
@@ -22,10 +27,11 @@ export const GeneralStats = ({ selectedLeague, selectedSeason, selectedTeam }: G
           totalLoses: result?.fixtures?.loses?.total,
           totalPlayed: result?.fixtures?.played?.total,
           totalWins: result?.fixtures?.wins?.total,
-        })));
+        })))
+        .catch(e => handleError(e?.toString()))
       setLoading(false);
     }
-  }, [selectedLeague, selectedSeason, selectedTeam])
+  }, [selectedLeague, selectedSeason, selectedTeam, handleError])
 
   return <Row gutter={[16, 16]}>
     <Col span={12}>

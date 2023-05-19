@@ -17,6 +17,7 @@ export type PlayersTableProps = {
   selectedLeague: number
   selectedSeason: number
   selectedTeam: number
+  handleError: (message: string) => void
 }
 
 export type GoalsChartProps = {
@@ -65,6 +66,7 @@ export type GeneralStatsProps = {
   selectedLeague: number
   selectedSeason: number
   selectedTeam: number
+  handleError: (message: string) => void
 }
 
 export type FiltersCardProps = {
@@ -76,6 +78,8 @@ export type FiltersCardProps = {
   handleSelectSeason: (season: number) => void
   selectedTeam: number
   handleSelectTeam: (team: number) => void
+  localStorageDataLoading: boolean
+  handleError: (message: string) => void
 }
 
 export type Team = {

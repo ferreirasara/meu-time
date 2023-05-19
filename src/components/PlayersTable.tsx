@@ -4,7 +4,12 @@ import { useEffect, useState } from "react"
 import { getPlayersFromAPI } from "../utils/utils"
 import { PlayersTableData, PlayersTableProps } from "../@types/types"
 
-export const PlayersTable = ({ selectedLeague, selectedSeason, selectedTeam }: PlayersTableProps) => {
+export const PlayersTable = ({
+  selectedLeague,
+  selectedSeason,
+  selectedTeam,
+  handleError,
+}: PlayersTableProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<PlayersTableData[]>([]);
 
@@ -12,16 +17,17 @@ export const PlayersTable = ({ selectedLeague, selectedSeason, selectedTeam }: P
     if (selectedLeague && selectedSeason && selectedTeam) {
       setLoading(true);
       getPlayersFromAPI(selectedLeague, selectedSeason, selectedTeam)
-        .then(result => setData(result?.map(player => ({
+        .then(result => setData((result)?.map(player => ({
           id: player?.player?.id,
           name: player?.player?.name,
           age: player?.player?.age,
           nationality: player?.player?.nationality,
           photo: player?.player?.photo,
-        }))));
+        }))))
+        .catch(e => handleError(e?.toString()))
       setLoading(false);
     }
-  }, [selectedLeague, selectedSeason, selectedTeam])
+  }, [selectedLeague, selectedSeason, selectedTeam, handleError])
 
   const columns: ColumnsType<PlayersTableData> = [
     {

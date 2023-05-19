@@ -2,6 +2,17 @@ import { Avatar, Card, Form, Select } from "antd"
 import { getCountriesFromLocalStorage, getLeaguesFromLocalStorage, getSeasonsFromLocalStorage, getTeamsFromAPI } from "../utils/utils";
 import { useEffect, useMemo, useState } from "react";
 import { FiltersCardProps, Team } from "../@types/types";
+import { LoadingOutlined } from "@ant-design/icons";
+
+const getSuffixIcon = (src?: string, loading?: boolean) => {
+  if (loading) {
+    return <LoadingOutlined />
+  } else if (src) {
+    return <Avatar size="small" src={src} />
+  } else {
+    return null
+  }
+}
 
 export const FiltersCard = ({
   selectedCountry,
@@ -12,6 +23,8 @@ export const FiltersCard = ({
   handleSelectSeason,
   selectedTeam,
   handleSelectTeam,
+  localStorageDataLoading,
+  handleError,
 }: FiltersCardProps) => {
   const [teams, setTeams] = useState<Team[]>([]);
   const [loadingTeams, setLoadingTeams] = useState<boolean>(false);
@@ -29,10 +42,12 @@ export const FiltersCard = ({
   useEffect(() => {
     if (selectedLeague && selectedSeason) {
       setLoadingTeams(true);
-      getTeamsFromAPI(selectedLeague, selectedSeason).then(result => setTeams(result));
+      getTeamsFromAPI(selectedLeague, selectedSeason)
+        .then(result => setTeams(result))
+        .catch(e => handleError(e?.toString()));
       setLoadingTeams(false);
     }
-  }, [selectedLeague, selectedSeason])
+  }, [selectedLeague, selectedSeason, handleError])
 
   return <Card style={{ maxWidth: 1300 }}>
     <Form
@@ -45,15 +60,16 @@ export const FiltersCard = ({
         <Select
           placeholder="Selecione um país"
           showSearch
-          showArrow={false}
           options={countries?.map(country => ({ label: country?.name, value: country?.name }))}
           onChange={handleSelectCountry}
           value={selectedCountry}
           filterOption={(input, option) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
-          suffixIcon={selectedCountryLogo ? <Avatar size="small" src={selectedCountryLogo} /> : null}
+          suffixIcon={getSuffixIcon(selectedCountryLogo, localStorageDataLoading)}
           style={{ width: 150 }}
+          loading={localStorageDataLoading}
+          disabled={localStorageDataLoading}
         />
       </Form.Item>
 
@@ -62,18 +78,18 @@ export const FiltersCard = ({
         name="league"
       >
         <Select
-          disabled={!selectedCountry}
+          disabled={!selectedCountry || localStorageDataLoading}
           placeholder="Selecione uma liga"
           showSearch
-          showArrow={false}
           options={filteredLeagues?.map(league => ({ label: league?.league?.name, value: league?.league?.id }))}
           onChange={handleSelectLeague}
           value={selectedLeague}
           filterOption={(input, option) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
-          suffixIcon={selectedLeagueLogo ? <Avatar size="small" src={selectedLeagueLogo} /> : null}
+          suffixIcon={getSuffixIcon(selectedLeagueLogo, localStorageDataLoading)}
           style={{ width: 150 }}
+          loading={localStorageDataLoading}
         />
       </Form.Item>
 
@@ -82,14 +98,14 @@ export const FiltersCard = ({
         name="season"
       >
         <Select
-          disabled={!selectedCountry || !selectedLeague}
+          disabled={!selectedCountry || !selectedLeague || localStorageDataLoading}
           placeholder="Selecione uma temporada"
           showSearch
-          showArrow={false}
           options={seasons?.map(season => ({ label: season, value: season }))}
           onChange={handleSelectSeason}
           value={selectedSeason}
           style={{ width: 150 }}
+          loading={localStorageDataLoading}
         />
       </Form.Item>
 
@@ -98,15 +114,14 @@ export const FiltersCard = ({
         name="team"
       >
         <Select
-          disabled={!selectedCountry || !selectedLeague || !selectedSeason}
+          disabled={!selectedCountry || !selectedLeague || !selectedSeason || loadingTeams || localStorageDataLoading}
           placeholder="Selecione um time"
           showSearch
-          showArrow={false}
-          loading={loadingTeams}
+          loading={loadingTeams || localStorageDataLoading}
           options={teams?.map(team => ({ label: team?.team?.name, value: team?.team?.id }))}
           onChange={handleSelectTeam}
           value={selectedTeam}
-          suffixIcon={selectedTeamLogo ? <Avatar size="small" src={selectedTeamLogo} /> : null}
+          suffixIcon={getSuffixIcon(selectedTeamLogo, (loadingTeams || localStorageDataLoading))}
           style={{ width: 150 }}
         />
       </Form.Item>

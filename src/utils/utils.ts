@@ -39,7 +39,9 @@ export const updateLocalStorageData = async () => {
     var timeDiff = lastUpdated.getTime() - now.getTime();
     var daysDiff = timeDiff / (1000 * 3600 * 24);
 
-    if (daysDiff >= 1) await saveDataToLocalStorage();
+    if (daysDiff >= 1 || !baseDataJson?.countries?.length || !baseDataJson?.leagues?.length || !baseDataJson?.seasons?.length) {
+      await saveDataToLocalStorage();
+    }
   }
 }
 
@@ -48,6 +50,10 @@ export const getCountrisFromAPI = async (): Promise<Country[]> => {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const countriesResponseJson = await countriesResponse?.json();
+  const errors = countriesResponseJson?.errors;
+  if (errors?.token || errors?.requests) {
+    throw new Error(errors?.token || errors?.requests);
+  }
   return countriesResponseJson?.response;
 }
 
@@ -56,6 +62,10 @@ export const getLeaguesFromAPI = async (): Promise<League[]> => {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const leaguesResponseJson = await leaguesResponse?.json();
+  const errors = leaguesResponseJson?.errors;
+  if (errors?.token || errors?.requests) {
+    throw new Error(errors?.token || errors?.requests);
+  }
   return leaguesResponseJson?.response;
 }
 
@@ -64,6 +74,10 @@ export const getSeasonsFromAPI = async (): Promise<number[]> => {
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const seasonsResponseJson = await seasonsResponse?.json();
+  const errors = seasonsResponseJson?.errors;
+  if (errors?.token || errors?.requests) {
+    throw new Error(errors?.token || errors?.requests);
+  }
   return seasonsResponseJson?.response;
 }
 
@@ -72,6 +86,10 @@ export const getTeamsFromAPI = async (leagueId: number, season: number): Promise
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const teamsResponseJson = await teamsResponse?.json();
+  const errors = teamsResponseJson?.errors;
+  if (errors?.token || errors?.requests) {
+    throw new Error(errors?.token || errors?.requests);
+  }
   return teamsResponseJson?.response;
 }
 
@@ -80,6 +98,10 @@ export const getPlayersFromAPI = async (leagueId: number, season: number, teamId
     headers: getHeaders(), method: "GET", redirect: 'follow'
   });
   const playersResponseJson = await playersResponse?.json();
+  const errors = playersResponseJson?.errors;
+  if (errors?.token || errors?.requests) {
+    throw new Error(errors?.token || errors?.requests);
+  }
   return playersResponseJson?.response;
 }
 
