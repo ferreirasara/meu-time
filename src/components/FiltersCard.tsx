@@ -1,8 +1,7 @@
-import { Card, Form, Select } from "antd"
+import { Avatar, Card, Form, Select } from "antd"
 import { getCountriesFromLocalStorage, getLeaguesFromLocalStorage, getSeasonsFromLocalStorage, getTeamsFromAPI } from "../utils/utils";
 import { useEffect, useMemo, useState } from "react";
-import { FiltersCardProps } from "../@types/FiltersCard";
-import { Team } from "../@types/api";
+import { FiltersCardProps, Team } from "../@types/types";
 
 export const FiltersCard = ({
   selectedCountry,
@@ -44,7 +43,6 @@ export const FiltersCard = ({
       >
         <Select
           placeholder="Selecione um país"
-          allowClear
           showSearch
           options={countries?.map(country => ({ label: country?.name, value: country?.name }))}
           onChange={handleSelectCountry}
@@ -52,6 +50,7 @@ export const FiltersCard = ({
           filterOption={(input, option) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
+          suffixIcon={<Avatar size="small" src={countries?.find(cur => cur?.name === selectedCountry)?.flag} />}
         />
       </Form.Item>
 
@@ -63,7 +62,6 @@ export const FiltersCard = ({
         <Select
           disabled={!selectedCountry}
           placeholder="Selecione uma liga"
-          allowClear
           showSearch
           options={filteredLeagues?.map(league => ({ label: league?.league?.name, value: league?.league?.id }))}
           onChange={handleSelectLeague}
@@ -71,6 +69,7 @@ export const FiltersCard = ({
           filterOption={(input, option) =>
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
+          suffixIcon={<Avatar size="small" src={filteredLeagues?.find(cur => cur?.league?.id === selectedLeague)?.league?.logo} />}
         />
       </Form.Item>
 
@@ -82,7 +81,6 @@ export const FiltersCard = ({
         <Select
           disabled={!selectedCountry || !selectedLeague}
           placeholder="Selecione uma temporada"
-          allowClear
           showSearch
           options={seasons?.map(season => ({ label: season, value: season }))}
           onChange={handleSelectSeason}
@@ -98,12 +96,12 @@ export const FiltersCard = ({
         <Select
           disabled={!selectedCountry || !selectedLeague || !selectedSeason}
           placeholder="Selecione um time"
-          allowClear
           showSearch
           loading={loadingTeams}
           options={teams?.map(team => ({ label: team?.team?.name, value: team?.team?.id }))}
           onChange={handleSelectTeam}
           value={selectedTeam}
+          suffixIcon={<Avatar size="small" src={teams?.find(cur => cur?.team?.id === selectedTeam)?.team?.logo} />}
         />
       </Form.Item>
     </Form>

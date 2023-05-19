@@ -1,5 +1,4 @@
-import { Country, League, Team } from "../@types/api";
-import { BaseData, } from "../@types/utils";
+import { BaseData, Country, League, Player, Team, TeamStats } from "../@types/types";
 import { BASE_URL } from "./constants";
 
 export const getHeaders = (apiKey?: string) => {
@@ -74,6 +73,22 @@ export const getTeamsFromAPI = async (leagueId: number, season: number): Promise
   });
   const teamsResponseJson = await teamsResponse?.json();
   return teamsResponseJson?.response;
+}
+
+export const getPlayersFromAPI = async (leagueId: number, season: number, teamId: number): Promise<Player[]> => {
+  const playersResponse = await fetch(BASE_URL + `/players?league=${leagueId}&season=${season}&team=${teamId}`, {
+    headers: getHeaders(), method: "GET", redirect: 'follow'
+  });
+  const playersResponseJson = await playersResponse?.json();
+  return playersResponseJson?.response;
+}
+
+export const getGeneralStatsFromAPI = async (leagueId: number, season: number, teamId: number): Promise<TeamStats> => {
+  const playersResponse = await fetch(BASE_URL + `/teams/statistics?league=${leagueId}&season=${season}&team=${teamId}`, {
+    headers: getHeaders(), method: "GET", redirect: 'follow'
+  });
+  const playersResponseJson = await playersResponse?.json();
+  return playersResponseJson?.response;
 }
 
 export const getBaseDataFromLocalStorage = (): BaseData | undefined => {
