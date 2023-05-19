@@ -32,14 +32,15 @@ export const Login = () => {
 
       const responseJson = await response?.json();
 
-      if (responseJson?.errors?.token) {
-        setValidateStatus("error");
-        setValidadeMessage("Sua API Key está incorreta. Verifique e tente novamente");
-      } else {
+      if (!!responseJson?.response?.account) {
         setValidateStatus("success");
         localStorage.setItem("api-key", values.apiKey);
         window.location.reload();
+      } else {
+        setValidateStatus("error");
+        setValidadeMessage("Sua API Key está incorreta. Verifique e tente novamente");
       }
+
     } catch (e) {
       console.log(e);
     }

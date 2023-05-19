@@ -1,0 +1,460 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiltersCard match snapshot 1`] = `
+<div
+  className="ant-card ant-card-bordered css-dev-only-do-not-override-15rg2km"
+  style={
+    Object {
+      "maxWidth": 1300,
+    }
+  }
+>
+  <div
+    className="ant-card-body"
+    style={Object {}}
+  >
+    <form
+      className="ant-form ant-form-inline css-dev-only-do-not-override-15rg2km"
+      onReset={[Function]}
+      onSubmit={[Function]}
+    >
+      <div
+        className="ant-form-item css-dev-only-do-not-override-15rg2km"
+      >
+        <div
+          className="ant-row ant-form-item-row css-dev-only-do-not-override-15rg2km"
+          style={Object {}}
+        >
+          <div
+            className="ant-col ant-form-item-label css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <label
+              className=""
+              htmlFor="country"
+              title="País"
+            >
+              País
+            </label>
+          </div>
+          <div
+            className="ant-col ant-form-item-control css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <div
+              className="ant-form-item-control-input"
+            >
+              <div
+                className="ant-form-item-control-input-content"
+              >
+                <div
+                  className="ant-select ant-select-in-form-item css-dev-only-do-not-override-15rg2km ant-select-single ant-select-show-arrow ant-select-show-search"
+                  data-testid="select-country"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "width": 150,
+                    }
+                  }
+                >
+                  <div
+                    className="ant-select-selector"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="ant-select-selection-search"
+                    >
+                      <input
+                        aria-activedescendant="country_list_0"
+                        aria-autocomplete="list"
+                        aria-controls="country_list"
+                        aria-expanded={false}
+                        aria-haspopup="listbox"
+                        aria-owns="country_list"
+                        autoComplete="off"
+                        className="ant-select-selection-search-input"
+                        disabled={false}
+                        id="country"
+                        onChange={[Function]}
+                        onCompositionEnd={[Function]}
+                        onCompositionStart={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onPaste={[Function]}
+                        readOnly={false}
+                        role="combobox"
+                        style={
+                          Object {
+                            "opacity": null,
+                          }
+                        }
+                        type="search"
+                        unselectable={null}
+                        value=""
+                      />
+                    </span>
+                    <span
+                      className="ant-select-selection-placeholder"
+                    >
+                      Selecione um país
+                    </span>
+                  </div>
+                  <span
+                    aria-hidden={true}
+                    className="ant-select-arrow"
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "WebkitUserSelect": "none",
+                        "userSelect": "none",
+                      }
+                    }
+                    unselectable="on"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-form-item css-dev-only-do-not-override-15rg2km"
+      >
+        <div
+          className="ant-row ant-form-item-row css-dev-only-do-not-override-15rg2km"
+          style={Object {}}
+        >
+          <div
+            className="ant-col ant-form-item-label css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <label
+              className=""
+              htmlFor="league"
+              title="Liga"
+            >
+              Liga
+            </label>
+          </div>
+          <div
+            className="ant-col ant-form-item-control css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <div
+              className="ant-form-item-control-input"
+            >
+              <div
+                className="ant-form-item-control-input-content"
+              >
+                <div
+                  className="ant-select ant-select-in-form-item css-dev-only-do-not-override-15rg2km ant-select-single ant-select-show-arrow ant-select-disabled ant-select-show-search"
+                  data-testid="select-league"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "width": 150,
+                    }
+                  }
+                >
+                  <div
+                    className="ant-select-selector"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="ant-select-selection-search"
+                    >
+                      <input
+                        aria-activedescendant="league_list_0"
+                        aria-autocomplete="list"
+                        aria-controls="league_list"
+                        aria-expanded={false}
+                        aria-haspopup="listbox"
+                        aria-owns="league_list"
+                        autoComplete="off"
+                        className="ant-select-selection-search-input"
+                        disabled={true}
+                        id="league"
+                        onChange={[Function]}
+                        onCompositionEnd={[Function]}
+                        onCompositionStart={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onPaste={[Function]}
+                        readOnly={false}
+                        role="combobox"
+                        style={
+                          Object {
+                            "opacity": null,
+                          }
+                        }
+                        type="search"
+                        unselectable={null}
+                        value=""
+                      />
+                    </span>
+                    <span
+                      className="ant-select-selection-placeholder"
+                    >
+                      Selecione uma liga
+                    </span>
+                  </div>
+                  <span
+                    aria-hidden={true}
+                    className="ant-select-arrow"
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "WebkitUserSelect": "none",
+                        "userSelect": "none",
+                      }
+                    }
+                    unselectable="on"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-form-item css-dev-only-do-not-override-15rg2km"
+      >
+        <div
+          className="ant-row ant-form-item-row css-dev-only-do-not-override-15rg2km"
+          style={Object {}}
+        >
+          <div
+            className="ant-col ant-form-item-label css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <label
+              className=""
+              htmlFor="season"
+              title="Temporada"
+            >
+              Temporada
+            </label>
+          </div>
+          <div
+            className="ant-col ant-form-item-control css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <div
+              className="ant-form-item-control-input"
+            >
+              <div
+                className="ant-form-item-control-input-content"
+              >
+                <div
+                  className="ant-select ant-select-in-form-item css-dev-only-do-not-override-15rg2km ant-select-single ant-select-show-arrow ant-select-disabled ant-select-show-search"
+                  data-testid="select-season"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "width": 150,
+                    }
+                  }
+                >
+                  <div
+                    className="ant-select-selector"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="ant-select-selection-search"
+                    >
+                      <input
+                        aria-activedescendant="season_list_0"
+                        aria-autocomplete="list"
+                        aria-controls="season_list"
+                        aria-expanded={false}
+                        aria-haspopup="listbox"
+                        aria-owns="season_list"
+                        autoComplete="off"
+                        className="ant-select-selection-search-input"
+                        disabled={true}
+                        id="season"
+                        onChange={[Function]}
+                        onCompositionEnd={[Function]}
+                        onCompositionStart={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onPaste={[Function]}
+                        readOnly={false}
+                        role="combobox"
+                        style={
+                          Object {
+                            "opacity": null,
+                          }
+                        }
+                        type="search"
+                        unselectable={null}
+                        value=""
+                      />
+                    </span>
+                    <span
+                      className="ant-select-selection-placeholder"
+                    >
+                      Selecione uma temporada
+                    </span>
+                  </div>
+                  <span
+                    aria-hidden={true}
+                    className="ant-select-arrow"
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "WebkitUserSelect": "none",
+                        "userSelect": "none",
+                      }
+                    }
+                    unselectable="on"
+                  >
+                    <span
+                      aria-label="down"
+                      className="anticon anticon-down ant-select-suffix"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        data-icon="down"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-form-item css-dev-only-do-not-override-15rg2km"
+      >
+        <div
+          className="ant-row ant-form-item-row css-dev-only-do-not-override-15rg2km"
+          style={Object {}}
+        >
+          <div
+            className="ant-col ant-form-item-label css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <label
+              className=""
+              htmlFor="team"
+              title="Time"
+            >
+              Time
+            </label>
+          </div>
+          <div
+            className="ant-col ant-form-item-control css-dev-only-do-not-override-15rg2km"
+            style={Object {}}
+          >
+            <div
+              className="ant-form-item-control-input"
+            >
+              <div
+                className="ant-form-item-control-input-content"
+              >
+                <div
+                  className="ant-select ant-select-in-form-item css-dev-only-do-not-override-15rg2km ant-select-single ant-select-show-arrow ant-select-disabled ant-select-show-search"
+                  data-testid="select-team"
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onKeyUp={[Function]}
+                  onMouseDown={[Function]}
+                  style={
+                    Object {
+                      "width": 150,
+                    }
+                  }
+                >
+                  <div
+                    className="ant-select-selector"
+                    onClick={[Function]}
+                    onMouseDown={[Function]}
+                  >
+                    <span
+                      className="ant-select-selection-search"
+                    >
+                      <input
+                        aria-activedescendant="team_list_0"
+                        aria-autocomplete="list"
+                        aria-controls="team_list"
+                        aria-expanded={false}
+                        aria-haspopup="listbox"
+                        aria-owns="team_list"
+                        autoComplete="off"
+                        className="ant-select-selection-search-input"
+                        disabled={true}
+                        id="team"
+                        onChange={[Function]}
+                        onCompositionEnd={[Function]}
+                        onCompositionStart={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        onPaste={[Function]}
+                        readOnly={false}
+                        role="combobox"
+                        style={
+                          Object {
+                            "opacity": null,
+                          }
+                        }
+                        type="search"
+                        unselectable={null}
+                        value=""
+                      />
+                    </span>
+                    <span
+                      className="ant-select-selection-placeholder"
+                    >
+                      Selecione um time
+                    </span>
+                  </div>
+                  <span
+                    aria-hidden={true}
+                    className="ant-select-arrow"
+                    onMouseDown={[Function]}
+                    style={
+                      Object {
+                        "WebkitUserSelect": "none",
+                        "userSelect": "none",
+                      }
+                    }
+                    unselectable="on"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;

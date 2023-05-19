@@ -1,6 +1,6 @@
 import { BarChartOutlined, LogoutOutlined } from "@ant-design/icons"
 import { Button, Space, Typography, theme } from "antd"
-import { Header } from "antd/es/layout/layout"
+import { Header } from "antd/lib/layout/layout"
 import { useState } from "react";
 
 export const AppHeader = () => {

@@ -70,6 +70,7 @@ export const FiltersCard = ({
           style={{ width: 150 }}
           loading={localStorageDataLoading}
           disabled={localStorageDataLoading}
+          data-testid="select-country"
         />
       </Form.Item>
 
@@ -90,6 +91,7 @@ export const FiltersCard = ({
           suffixIcon={getSuffixIcon(selectedLeagueLogo, localStorageDataLoading)}
           style={{ width: 150 }}
           loading={localStorageDataLoading}
+          data-testid="select-league"
         />
       </Form.Item>
 
@@ -106,6 +108,7 @@ export const FiltersCard = ({
           value={selectedSeason}
           style={{ width: 150 }}
           loading={localStorageDataLoading}
+          data-testid="select-season"
         />
       </Form.Item>
 
@@ -123,6 +126,7 @@ export const FiltersCard = ({
           value={selectedTeam}
           suffixIcon={getSuffixIcon(selectedTeamLogo, (loadingTeams || localStorageDataLoading))}
           style={{ width: 150 }}
+          data-testid="select-team"
         />
       </Form.Item>
     </Form>

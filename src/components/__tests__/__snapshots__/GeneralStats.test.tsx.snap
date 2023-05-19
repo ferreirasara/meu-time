@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GeneralStats match snapshot 1`] = `
+<div
+  className="ant-row css-dev-only-do-not-override-15rg2km"
+  style={
+    Object {
+      "marginBottom": -8,
+      "marginLeft": -8,
+      "marginRight": -8,
+      "marginTop": -8,
+    }
+  }
+>
+  <div
+    className="ant-col ant-col-12 css-dev-only-do-not-override-15rg2km"
+    style={
+      Object {
+        "paddingBottom": 8,
+        "paddingLeft": 8,
+        "paddingRight": 8,
+        "paddingTop": 8,
+      }
+    }
+  >
+    <div>
+      <div
+        className="ant-divider css-dev-only-do-not-override-15rg2km ant-divider-horizontal ant-divider-with-text ant-divider-with-text-center"
+        role="separator"
+      >
+        <span
+          className="ant-divider-inner-text"
+          style={Object {}}
+        >
+          Estatísticas Gerais
+        </span>
+      </div>
+      <div
+        className="ant-list ant-list-split ant-list-bordered css-dev-only-do-not-override-15rg2km"
+      >
+        <div
+          className="ant-spin-nested-loading css-dev-only-do-not-override-15rg2km"
+        >
+          <div
+            className="ant-spin-container"
+          >
+            <li
+              className="ant-list-item ant-list-item-no-flex"
+            >
+              <span
+                className="ant-typography css-dev-only-do-not-override-15rg2km"
+                style={
+                  Object {
+                    "WebkitLineClamp": undefined,
+                  }
+                }
+              >
+                <strong>
+                  Formação mais utilizada
+                </strong>
+              </span>
+              : 
+               (usada 
+               vezes)
+            </li>
+            <li
+              className="ant-list-item ant-list-item-no-flex"
+            >
+              <span
+                className="ant-typography css-dev-only-do-not-override-15rg2km"
+                style={
+                  Object {
+                    "WebkitLineClamp": undefined,
+                  }
+                }
+              >
+                <strong>
+                  Total de jogos
+                </strong>
+              </span>
+              : 
+            </li>
+            <li
+              className="ant-list-item ant-list-item-no-flex"
+            >
+              <span
+                className="ant-typography css-dev-only-do-not-override-15rg2km"
+                style={
+                  Object {
+                    "WebkitLineClamp": undefined,
+                  }
+                }
+              >
+                <strong>
+                  Total de vitórias
+                </strong>
+              </span>
+              : 
+            </li>
+            <li
+              className="ant-list-item ant-list-item-no-flex"
+            >
+              <span
+                className="ant-typography css-dev-only-do-not-override-15rg2km"
+                style={
+                  Object {
+                    "WebkitLineClamp": undefined,
+                  }
+                }
+              >
+                <strong>
+                  Total de derrotas
+                </strong>
+              </span>
+              : 
+            </li>
+            <li
+              className="ant-list-item ant-list-item-no-flex"
+            >
+              <span
+                className="ant-typography css-dev-only-do-not-override-15rg2km"
+                style={
+                  Object {
+                    "WebkitLineClamp": undefined,
+                  }
+                }
+              >
+                <strong>
+                  Total de empates
+                </strong>
+              </span>
+              : 
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-col ant-col-12 css-dev-only-do-not-override-15rg2km"
+    style={
+      Object {
+        "paddingBottom": 8,
+        "paddingLeft": 8,
+        "paddingRight": 8,
+        "paddingTop": 8,
+      }
+    }
+  >
+    <div>
+      <div
+        className="ant-divider css-dev-only-do-not-override-15rg2km ant-divider-horizontal ant-divider-with-text ant-divider-with-text-center"
+        role="separator"
+      >
+        <span
+          className="ant-divider-inner-text"
+          style={Object {}}
+        >
+          Gols por minuto de jogo
+        </span>
+      </div>
+      <canvas
+        data-testid="goals-chart"
+        height={150}
+        role="img"
+        width={300}
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,5 +1,5 @@
 import { Col, Divider, List, Row, Typography } from "antd"
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { getGeneralStatsFromAPI } from "../utils/utils";
 import { GoalsChart } from "./GoalsChart";
 import { GeneralStatsData, GeneralStatsProps } from "../@types/types";
@@ -13,7 +13,7 @@ export const GeneralStats = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<GeneralStatsData>();
 
-  useEffect(() => {
+  useMemo(() => {
     if (selectedLeague && selectedSeason && selectedTeam) {
       setLoading(true);
       getGeneralStatsFromAPI(selectedLeague, selectedSeason, selectedTeam)

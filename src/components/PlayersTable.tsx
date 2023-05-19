@@ -1,6 +1,6 @@
 import { Avatar, Divider, Table } from "antd"
-import { ColumnsType } from "antd/es/table"
-import { useEffect, useState } from "react"
+import { ColumnsType } from "antd/lib/table"
+import { useMemo, useState } from "react"
 import { getPlayersFromAPI } from "../utils/utils"
 import { PlayersTableData, PlayersTableProps } from "../@types/types"
 
@@ -13,7 +13,7 @@ export const PlayersTable = ({
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<PlayersTableData[]>([]);
 
-  useEffect(() => {
+  useMemo(() => {
     if (selectedLeague && selectedSeason && selectedTeam) {
       setLoading(true);
       getPlayersFromAPI(selectedLeague, selectedSeason, selectedTeam)
@@ -36,7 +36,7 @@ export const PlayersTable = ({
       render: (photo) => <Avatar size="small" src={photo} />
     },
     {
-      title: 'Name',
+      title: 'Nome',
       dataIndex: 'name',
       key: 'name',
     },

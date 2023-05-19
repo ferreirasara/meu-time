@@ -3,7 +3,7 @@ import { FiltersCard } from "./FiltersCard";
 import { PlayersTable } from './PlayersTable';
 import { GeneralStats } from './GeneralStats';
 import { Alert, Col, Empty, Layout, Row, Space, theme } from 'antd';
-import { Content } from 'antd/es/layout/layout';
+import { Content } from 'antd/lib/layout/layout';
 import { AppHeader } from './AppHeader';
 import { updateLocalStorageData } from "../utils/utils";
 

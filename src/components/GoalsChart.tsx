@@ -50,6 +50,6 @@ export const GoalsChart = ({ data, loading }: GoalsChartProps) => {
 
   return <div>
     <Divider>Gols por minuto de jogo</Divider>
-    <Line options={options} data={chartData} />
+    <Line options={options} data={chartData} data-testid="goals-chart" />
   </div>
 }

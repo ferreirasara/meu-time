@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GoalsChart match snapshot 1`] = `
+<div>
+  <div
+    className="ant-divider css-dev-only-do-not-override-15rg2km ant-divider-horizontal ant-divider-with-text ant-divider-with-text-center"
+    role="separator"
+  >
+    <span
+      className="ant-divider-inner-text"
+      style={Object {}}
+    >
+      Gols por minuto de jogo
+    </span>
+  </div>
+  <canvas
+    data-testid="goals-chart"
+    height={150}
+    role="img"
+    width={300}
+  />
+</div>
+`;
