@@ -1,8 +1,10 @@
 import { BarChartOutlined, LogoutOutlined } from "@ant-design/icons"
-import { Button, Typography, theme } from "antd"
+import { Button, Space, Typography, theme } from "antd"
 import { Header } from "antd/es/layout/layout"
+import { useState } from "react";
 
 export const AppHeader = () => {
+  const [showBlur, setShowBlur] = useState<boolean>(true);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -11,6 +13,8 @@ export const AppHeader = () => {
     localStorage.removeItem("api-key");
     window.location.reload();
   }
+
+  const apiKey = localStorage.getItem('api-key');
 
   return <Header
     style={{
@@ -25,13 +29,27 @@ export const AppHeader = () => {
     >
       <BarChartOutlined /> Meu Time
     </Typography.Title>
-    <Button
-      type='default'
-      ghost
-      icon={<LogoutOutlined />}
-      onClick={handleLogout}
-    >
-      Sair
-    </Button>
+    <Space>
+      <Typography.Text style={{ color: colorBgContainer }}>Sua API Key: </Typography.Text>
+      <Typography.Text
+        code
+        style={{
+          color: colorBgContainer,
+          filter: `blur(${showBlur ? '0.15rem' : '0rem'})`
+        }}
+        onMouseEnter={() => setShowBlur(false)}
+        onMouseLeave={() => setShowBlur(true)}
+      >
+        {apiKey}
+      </Typography.Text>
+      <Button
+        type='default'
+        ghost
+        icon={<LogoutOutlined />}
+        onClick={handleLogout}
+      >
+        Sair
+      </Button>
+    </Space>
   </Header>
 }
