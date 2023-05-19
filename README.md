@@ -22,7 +22,7 @@ npm start
 
 This will start the project and launch it in your default browser.
 
-<!-- ### 🔬 Testing
+### 🔬 Testing
 
 Meu Time provides two types of tests: unit tests and end-to-end tests. To run the unit tests, use the following command:
 
@@ -34,16 +34,6 @@ To run the end-to-end tests, use the following command:
 
 ```
 npm run local:test:e2e
-``` -->
-
-<!-- ### 📚 Storybook
-
-Meu Time also provides a Storybook for viewing and testing components in isolation. To launch the Storybook, use the following command:
-
 ```
-npm run storybook
-```
-
-This will launch the Storybook and open it in your default browser. -->
 
 <!-- ## 📷 Screenshots -->
