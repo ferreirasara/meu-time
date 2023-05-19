@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FiltersCard } from "./FiltersCard";
 import { PlayersTable } from './PlayersTable';
 import { GeneralStats } from './GeneralStats';
-import { Col, Layout, Row, Typography, theme } from 'antd';
+import { Col, Empty, Layout, Row, Typography, theme } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 
 export const Dashboard = () => {
@@ -20,6 +20,8 @@ export const Dashboard = () => {
   const handleSelectLeague = (league: number) => setSelectedLeague(league);
   const handleSelectSeason = (handleSelectSeason: number) => setSelectedSeason(handleSelectSeason);
   const handleSelectTeam = (handleSelectTeam: number) => setSelectedTeam(handleSelectTeam);
+
+  const showStats = !!selectedCountry && !!selectedLeague && !!selectedSeason && !!selectedTeam;
 
   return <Layout className="layout">
     <Header style={{ display: 'flex', alignItems: 'center' }}>
@@ -40,20 +42,29 @@ export const Dashboard = () => {
           />
         </Col>
       </Row>
-      <GeneralStats
-        selectedLeague={selectedLeague}
-        selectedSeason={selectedSeason}
-        selectedTeam={selectedTeam}
-      />
-      <Row gutter={[16, 16]}>
-        <Col flex="auto">
-          <PlayersTable
+      {showStats
+        ? <div>
+          <GeneralStats
             selectedLeague={selectedLeague}
             selectedSeason={selectedSeason}
             selectedTeam={selectedTeam}
           />
-        </Col>
-      </Row>
+          <Row gutter={[16, 16]}>
+            <Col flex="auto">
+              <PlayersTable
+                selectedLeague={selectedLeague}
+                selectedSeason={selectedSeason}
+                selectedTeam={selectedTeam}
+              />
+            </Col>
+          </Row>
+        </div>
+        : <Empty
+          style={{ margin: '16px' }}
+          description="Selecione um time utilizando os filtros acima."
+          image={Empty.PRESENTED_IMAGE_SIMPLE}
+        />
+      }
     </Content>
   </Layout>
 }
