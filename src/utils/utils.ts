@@ -1,4 +1,5 @@
-import { BaseData, Country, League } from "../@types/utils";
+import { Country, League, Team } from "../@types/api";
+import { BaseData, } from "../@types/utils";
 import { BASE_URL } from "./constants";
 
 export const getHeaders = (apiKey?: string) => {
@@ -65,6 +66,14 @@ export const getSeasonsFromAPI = async (): Promise<number[]> => {
   });
   const seasonsResponseJson = await seasonsResponse?.json();
   return seasonsResponseJson?.response;
+}
+
+export const getTeamsFromAPI = async (leagueId: number, season: number): Promise<Team[]> => {
+  const teamsResponse = await fetch(BASE_URL + `/teams?league=${leagueId}&season=${season}`, {
+    headers: getHeaders(), method: "GET", redirect: 'follow'
+  });
+  const teamsResponseJson = await teamsResponse?.json();
+  return teamsResponseJson?.response;
 }
 
 export const getBaseDataFromLocalStorage = (): BaseData | undefined => {

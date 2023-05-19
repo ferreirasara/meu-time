@@ -1,7 +1,8 @@
 import { Card, Form, Select } from "antd"
-import { getCountriesFromLocalStorage, getLeaguesFromLocalStorage, getSeasonsFromLocalStorage } from "../utils/utils";
-import { useMemo } from "react";
+import { getCountriesFromLocalStorage, getLeaguesFromLocalStorage, getSeasonsFromLocalStorage, getTeamsFromAPI } from "../utils/utils";
+import { useEffect, useMemo, useState } from "react";
 import { FiltersCardProps } from "../@types/FiltersCard";
+import { Team } from "../@types/api";
 
 export const FiltersCard = ({
   selectedCountry,
@@ -9,8 +10,13 @@ export const FiltersCard = ({
   selectedLeague,
   handleSelectLeague,
   selectedSeason,
-  handleSelectSeason
+  handleSelectSeason,
+  selectedTeam,
+  handleSelectTeam,
 }: FiltersCardProps) => {
+  const [teams, setTeams] = useState<Team[]>([]);
+  const [loadingTeams, setLoadingTeams] = useState<boolean>(false);
+
   const countries = getCountriesFromLocalStorage();
   const leagues = getLeaguesFromLocalStorage();
   const seasons = getSeasonsFromLocalStorage();
@@ -19,6 +25,14 @@ export const FiltersCard = ({
     return leagues?.filter(league => league?.country?.name === selectedCountry)
   }, [leagues, selectedCountry])
 
+  useEffect(() => {
+    if (selectedLeague && selectedSeason) {
+      setLoadingTeams(true);
+      getTeamsFromAPI(selectedLeague, selectedSeason).then(result => setTeams(result));
+      setLoadingTeams(false);
+    }
+  }, [selectedLeague, selectedSeason])
+
   return <Card>
     <Form
       layout="inline"
@@ -26,7 +40,7 @@ export const FiltersCard = ({
       <Form.Item
         label="País"
         name="country"
-        style={{ width: 300 }}
+        style={{ width: 200 }}
       >
         <Select
           placeholder="Selecione um país"
@@ -44,7 +58,7 @@ export const FiltersCard = ({
       <Form.Item
         label="Liga"
         name="league"
-        style={{ width: 300 }}
+        style={{ width: 200 }}
       >
         <Select
           disabled={!selectedCountry}
@@ -63,7 +77,7 @@ export const FiltersCard = ({
       <Form.Item
         label="Temporada"
         name="season"
-        style={{ width: 300 }}
+        style={{ width: 200 }}
       >
         <Select
           disabled={!selectedCountry || !selectedLeague}
@@ -73,6 +87,23 @@ export const FiltersCard = ({
           options={seasons?.map(season => ({ label: season, value: season }))}
           onChange={handleSelectSeason}
           value={selectedSeason}
+        />
+      </Form.Item>
+
+      <Form.Item
+        label="Time"
+        name="team"
+        style={{ width: 200 }}
+      >
+        <Select
+          disabled={!selectedCountry || !selectedLeague || !selectedSeason}
+          placeholder="Selecione um time"
+          allowClear
+          showSearch
+          loading={loadingTeams}
+          options={teams?.map(team => ({ label: team?.team?.name, value: team?.team?.id }))}
+          onChange={handleSelectTeam}
+          value={selectedTeam}
         />
       </Form.Item>
     </Form>
