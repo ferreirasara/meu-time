@@ -1,4 +1,4 @@
-import { BaseData, Country, League, Player, Team, TeamStats } from "../@types/types";
+import { BaseData, Country, League, Player, RequestData, Team, TeamStats } from "../@types/types";
 import { BASE_URL } from "./constants";
 
 export const getHeaders = (apiKey?: string) => {
@@ -9,6 +9,27 @@ export const getHeaders = (apiKey?: string) => {
     "x-rapidapi-key": apiKey,
     "x-rapidapi-host": "v3.football.api-sports.io"
   }
+}
+
+export const getStatusFromAPI = async (apiKey?: string) => {
+  const response = await fetch(BASE_URL + "/status", {
+    headers: getHeaders(apiKey),
+    method: "GET",
+    redirect: 'follow'
+  });
+
+  const responseJson = await response?.json();
+  return responseJson;
+}
+
+export const upsertRequestLocalStorageData = async () => {
+  const responseJson = await getStatusFromAPI();
+  const requestData: RequestData = {
+    current: responseJson?.response?.requests?.current,
+    limitDay: responseJson?.response?.requests?.limit_day,
+  }
+
+  localStorage.setItem('requests-data', JSON.stringify(requestData));
 }
 
 export const saveDataToLocalStorage = async () => {
@@ -31,6 +52,7 @@ export const updateLocalStorageData = async () => {
 
   if (!baseDataString) {
     await saveDataToLocalStorage();
+    await upsertRequestLocalStorageData();
   } else {
     const baseDataJson: BaseData = JSON.parse(baseDataString);
     const lastUpdated = new Date(baseDataJson?.lastUpdated || "");
@@ -41,6 +63,7 @@ export const updateLocalStorageData = async () => {
 
     if (daysDiff >= 1 || !baseDataJson?.countries?.length || !baseDataJson?.leagues?.length || !baseDataJson?.seasons?.length) {
       await saveDataToLocalStorage();
+      await upsertRequestLocalStorageData();
     }
   }
 }
@@ -54,6 +77,7 @@ export const getCountrisFromAPI = async (): Promise<Country[]> => {
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
+  await upsertRequestLocalStorageData();
   return countriesResponseJson?.response;
 }
 
@@ -66,6 +90,7 @@ export const getLeaguesFromAPI = async (): Promise<League[]> => {
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
+  await upsertRequestLocalStorageData();
   return leaguesResponseJson?.response;
 }
 
@@ -78,6 +103,7 @@ export const getSeasonsFromAPI = async (): Promise<number[]> => {
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
+  await upsertRequestLocalStorageData();
   return seasonsResponseJson?.response;
 }
 
@@ -90,6 +116,7 @@ export const getTeamsFromAPI = async (leagueId: number, season: number): Promise
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
+  await upsertRequestLocalStorageData();
   return teamsResponseJson?.response;
 }
 
@@ -102,6 +129,7 @@ export const getPlayersFromAPI = async (leagueId: number, season: number, teamId
   if (errors?.token || errors?.requests) {
     throw new Error(errors?.token || errors?.requests);
   }
+  await upsertRequestLocalStorageData();
   return playersResponseJson?.response;
 }
 

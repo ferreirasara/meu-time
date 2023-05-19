@@ -1,8 +1,8 @@
 import { Button, Card, Form, FormItemProps, Input, Typography, theme } from 'antd';
 import { useState } from 'react';
-import { BASE_URL } from '../utils/constants';
-import { getHeaders } from '../utils/utils';
+import { getStatusFromAPI } from '../utils/utils';
 import { BarChartOutlined, LoginOutlined } from '@ant-design/icons';
+import { RequestData, UserData } from '../@types/types';
 
 export const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -24,17 +24,22 @@ export const Login = () => {
     setValidadeMessage("");
 
     try {
-      const response = await fetch(BASE_URL + "/status", {
-        headers: getHeaders(values.apiKey),
-        method: "GET",
-        redirect: 'follow'
-      });
-
-      const responseJson = await response?.json();
+      const responseJson = await getStatusFromAPI(values.apiKey);
 
       if (!!responseJson?.response?.account) {
+        const userData: UserData = {
+          email: responseJson?.response?.account?.email,
+          firstname: responseJson?.response?.account?.firstname,
+          lastname: responseJson?.response?.account?.lastname,
+        }
+        const requestData: RequestData = {
+          current: responseJson?.response?.requests?.current,
+          limitDay: responseJson?.response?.requests?.limit_day,
+        }
         setValidateStatus("success");
         localStorage.setItem("api-key", values.apiKey);
+        localStorage.setItem("user-data", JSON.stringify(userData));
+        localStorage.setItem('requests-data', JSON.stringify(requestData));
         window.location.reload();
       } else {
         setValidateStatus("error");

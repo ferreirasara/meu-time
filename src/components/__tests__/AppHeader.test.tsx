@@ -15,17 +15,17 @@ describe('AppHeader', () => {
     expect(titleEl).toBeInTheDocument();
   });
 
-  it('renders api key', () => {
+  it('renders info button', () => {
     const { getByText } = render(<AppHeader />);
 
-    const apiKeyTextEl = getByText(/Sua API Key/);
-    expect(apiKeyTextEl).toBeInTheDocument();
+    const infoButton = getByText(/Informações/);
+    expect(infoButton).toBeInTheDocument();
   });
 
   it('renders logout button', () => {
-    const { getByRole } = render(<AppHeader />);
+    const { getByText } = render(<AppHeader />);
 
-    const buttonEl = getByRole('button');
+    const buttonEl = getByText(/Sair/);
     expect(buttonEl).toBeInTheDocument();
   });
 })

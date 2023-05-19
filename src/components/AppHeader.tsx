@@ -1,20 +1,21 @@
-import { BarChartOutlined, LogoutOutlined } from "@ant-design/icons"
+import { BarChartOutlined, InfoOutlined, LogoutOutlined } from "@ant-design/icons"
 import { Button, Space, Typography, theme } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import { useState } from "react";
+import { InfoModal } from "./InfoModal";
 
 export const AppHeader = () => {
-  const [showBlur, setShowBlur] = useState<boolean>(true);
+  const [infoModalOpen, setInfoModalOpen] = useState<boolean>(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   const handleLogout = () => {
     localStorage.removeItem("api-key");
+    localStorage.removeItem("user-data");
+    localStorage.removeItem("requests-data");
     window.location.reload();
   }
-
-  const apiKey = localStorage.getItem('api-key');
 
   return <Header
     style={{
@@ -30,20 +31,14 @@ export const AppHeader = () => {
       <BarChartOutlined /> Meu Time
     </Typography.Title>
     <Space>
-      <Typography.Text style={{ color: colorBgContainer }}>Sua API Key: </Typography.Text>
-      <Typography.Text
-        code
-        style={{
-          color: colorBgContainer,
-          filter: `blur(${showBlur ? '0.15rem' : '0rem'})`
-        }}
-        onMouseEnter={() => setShowBlur(false)}
-        onMouseLeave={() => setShowBlur(true)}
-      >
-        {apiKey}
-      </Typography.Text>
       <Button
-        type='default'
+        ghost
+        icon={<InfoOutlined />}
+        onClick={() => setInfoModalOpen(true)}
+      >
+        Informações
+      </Button>
+      <Button
         ghost
         icon={<LogoutOutlined />}
         onClick={handleLogout}
@@ -51,5 +46,9 @@ export const AppHeader = () => {
         Sair
       </Button>
     </Space>
+    <InfoModal
+      infoModalOpen={infoModalOpen}
+      onClose={() => setInfoModalOpen(false)}
+    />
   </Header>
 }

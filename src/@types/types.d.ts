@@ -5,6 +5,17 @@ export type BaseData = {
   seasons?: number[],
 }
 
+export type UserData = {
+  email: string,
+  firstname: string,
+  lastname: string,
+}
+
+export type RequestData = {
+  current: number,
+  limitDay: number,
+}
+
 export type PlayersTableData = {
   id: number,
   name: string,
@@ -272,4 +283,9 @@ export type TeamStats = {
       },
     },
   }
+}
+
+export type InfoModalProps = {
+  infoModalOpen: boolean
+  onClose: () => void
 }
