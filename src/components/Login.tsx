@@ -1,13 +1,16 @@
-import '../style/Login.scss';
-import { Button, Card, Form, FormItemProps, Input } from 'antd';
+import { Button, Card, Form, FormItemProps, Input, Typography, theme } from 'antd';
 import { useState } from 'react';
 import { BASE_URL } from '../utils/constants';
 import { getHeaders } from '../utils/utils';
+import { BarChartOutlined, LoginOutlined } from '@ant-design/icons';
 
 export const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [validateStatus, setValidateStatus] = useState<FormItemProps["validateStatus"]>("");
   const [validateMessage, setValidadeMessage] = useState<string>("");
+  const {
+    token: { colorBgContainerDisabled, colorBgContainer },
+  } = theme.useToken();
 
   const onLogin = async (values: { apiKey: string }) => {
     if (!values?.apiKey) {
@@ -44,8 +47,28 @@ export const Login = () => {
     setLoading(false);
   };
 
-  return <div className="login-container">
-    <Card>
+  return <div
+    className="login-container"
+    style={{
+      width: '100%',
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colorBgContainerDisabled,
+    }}
+  >
+    <Card
+      title={
+        <Typography.Title
+          level={2}
+          style={{ textAlign: 'center' }}
+        >
+          <BarChartOutlined /> Meu Time
+        </Typography.Title>
+      }
+      bordered
+    >
       <Form
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 24 }}
@@ -60,12 +83,23 @@ export const Login = () => {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-          <Button type="primary" htmlType="submit" loading={loading}>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+            icon={<LoginOutlined />}
+            block
+          >
             Login
           </Button>
         </Form.Item>
       </Form>
+      <div>
+        <Typography.Text>
+          Você pode obter uma key clicando <Typography.Link href='https://dashboard.api-football.com/register' target='_blank'>aqui</Typography.Link>.
+        </Typography.Text>
+      </div>
     </Card>
   </div>;
 }

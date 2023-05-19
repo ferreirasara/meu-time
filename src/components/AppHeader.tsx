@@ -12,8 +12,19 @@ export const AppHeader = () => {
     window.location.reload();
   }
 
-  return <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-    <Typography.Title style={{ margin: 0, color: colorBgContainer }}><BarChartOutlined /> Meu Time</Typography.Title>
+  return <Header
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between'
+    }}
+  >
+    <Typography.Title
+      level={2}
+      style={{ margin: 0, color: colorBgContainer }}
+    >
+      <BarChartOutlined /> Meu Time
+    </Typography.Title>
     <Button
       type='default'
       ghost

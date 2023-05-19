@@ -1,4 +1,3 @@
-import '../style/Dashboard.scss';
 import { useState } from "react";
 import { FiltersCard } from "./FiltersCard";
 import { PlayersTable } from './PlayersTable';
