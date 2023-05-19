@@ -23,7 +23,7 @@ export const FiltersCard = ({
   const filteredLeagues = useMemo(() => leagues?.filter(league => league?.country?.name === selectedCountry), [leagues, selectedCountry]);
 
   const selectedCountryLogo = useMemo(() => countries?.find(cur => cur?.name === selectedCountry)?.flag, [countries, selectedCountry]);
-  const selectedLeagueLogo = useMemo(() => filteredLeagues?.find(cur => cur?.league?.id === selectedLeague)?.league?.logo, [filteredLeagues, leagues, selectedLeague]);
+  const selectedLeagueLogo = useMemo(() => filteredLeagues?.find(cur => cur?.league?.id === selectedLeague)?.league?.logo, [filteredLeagues, selectedLeague]);
   const selectedTeamLogo = useMemo(() => teams?.find(cur => cur?.team?.id === selectedTeam)?.team?.logo, [teams, selectedTeam]);
 
   useEffect(() => {

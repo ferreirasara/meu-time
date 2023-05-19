@@ -9,7 +9,7 @@ export const Login = () => {
   const [validateStatus, setValidateStatus] = useState<FormItemProps["validateStatus"]>("");
   const [validateMessage, setValidadeMessage] = useState<string>("");
   const {
-    token: { colorBgContainerDisabled, colorBgContainer },
+    token: { colorBgContainerDisabled },
   } = theme.useToken();
 
   const onLogin = async (values: { apiKey: string }) => {
