@@ -36,4 +36,13 @@ To run the end-to-end tests, use the following command:
 npm run local:test:e2e
 ```
 
-<!-- ## 📷 Screenshots -->
+## 📷 Screenshots
+
+![login](https://github.com/ferreirasara/meu-time/assets/42873969/744174af-44f8-4a5c-bc29-9cab27120e32)
+
+![dashboard](https://github.com/ferreirasara/meu-time/assets/42873969/12623132-b417-47d4-8c47-aa37b28de1f2)
+
+![info](https://github.com/ferreirasara/meu-time/assets/42873969/0db0f9c5-a1e6-4063-8205-69254e2ba94a)
+
+![stats](https://github.com/ferreirasara/meu-time/assets/42873969/49411cb3-21f0-4b20-bfe7-1bfb1af5c6b0)
+
