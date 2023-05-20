@@ -3,8 +3,10 @@ import { Button, Space, Typography, theme } from "antd"
 import { Header } from "antd/lib/layout/layout"
 import { useState } from "react";
 import { InfoModal } from "./InfoModal";
+import useCheckMobileScreen from "../hooks/useCheckMobileScreen";
 
 export const AppHeader = () => {
+  const isMobile = useCheckMobileScreen();
   const [infoModalOpen, setInfoModalOpen] = useState<boolean>(false);
   const {
     token: { colorBgContainer },
@@ -25,7 +27,7 @@ export const AppHeader = () => {
     }}
   >
     <Typography.Title
-      level={2}
+      level={isMobile ? 3 : 2}
       style={{ margin: 0, color: colorBgContainer }}
     >
       <BarChartOutlined /> Meu Time
@@ -35,9 +37,8 @@ export const AppHeader = () => {
         ghost
         icon={<InfoOutlined />}
         onClick={() => setInfoModalOpen(true)}
-      >
-        Informações
-      </Button>
+        data-testid="info-button"
+      />
       <Button
         ghost
         icon={<LogoutOutlined />}

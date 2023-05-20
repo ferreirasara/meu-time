@@ -3,6 +3,7 @@ import { getCountriesFromLocalStorage, getLeaguesFromLocalStorage, getSeasonsFro
 import { useEffect, useMemo, useState } from "react";
 import { FiltersCardProps, Team } from "../@types/types";
 import { LoadingOutlined } from "@ant-design/icons";
+import useCheckMobileScreen from "../hooks/useCheckMobileScreen";
 
 const getSuffixIcon = (src?: string, loading?: boolean) => {
   if (loading) {
@@ -26,6 +27,7 @@ export const FiltersCard = ({
   localStorageDataLoading,
   handleError,
 }: FiltersCardProps) => {
+  const isMobile = useCheckMobileScreen();
   const [teams, setTeams] = useState<Team[]>([]);
   const [loadingTeams, setLoadingTeams] = useState<boolean>(false);
 
@@ -51,7 +53,7 @@ export const FiltersCard = ({
 
   return <Card style={{ maxWidth: 1300 }}>
     <Form
-      layout="inline"
+      layout={isMobile ? "vertical" : "inline"}
     >
       <Form.Item
         label="País"
@@ -67,7 +69,7 @@ export const FiltersCard = ({
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
           suffixIcon={getSuffixIcon(selectedCountryLogo, localStorageDataLoading)}
-          style={{ width: 150 }}
+          style={{ width: isMobile ? "100%" : 150 }}
           loading={localStorageDataLoading}
           disabled={localStorageDataLoading}
           data-testid="select-country"
@@ -89,7 +91,7 @@ export const FiltersCard = ({
             (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
           }
           suffixIcon={getSuffixIcon(selectedLeagueLogo, localStorageDataLoading)}
-          style={{ width: 150 }}
+          style={{ width: isMobile ? "100%" : 150 }}
           loading={localStorageDataLoading}
           data-testid="select-league"
         />
@@ -106,7 +108,7 @@ export const FiltersCard = ({
           options={seasons?.map(season => ({ label: season, value: season }))}
           onChange={handleSelectSeason}
           value={selectedSeason}
-          style={{ width: 150 }}
+          style={{ width: isMobile ? "100%" : 150 }}
           loading={localStorageDataLoading}
           data-testid="select-season"
         />
@@ -125,7 +127,7 @@ export const FiltersCard = ({
           onChange={handleSelectTeam}
           value={selectedTeam}
           suffixIcon={getSuffixIcon(selectedTeamLogo, (loadingTeams || localStorageDataLoading))}
-          style={{ width: 150 }}
+          style={{ width: isMobile ? "100%" : 150 }}
           data-testid="select-team"
         />
       </Form.Item>

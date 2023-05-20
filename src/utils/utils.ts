@@ -3,12 +3,11 @@ import { BASE_URL } from "./constants";
 
 export const getHeaders = (apiKey?: string) => {
   if (!apiKey) apiKey = localStorage.getItem('api-key') || "";
-  console.log("🚀 | getHeaders | apiKey:", apiKey);
 
   return {
     "x-apisports-key": apiKey,
-    // "x-rapidapi-key": apiKey,
-    // "x-rapidapi-host": "v3.football.api-sports.io"
+    "x-rapidapi-key": apiKey,
+    "x-rapidapi-host": "v3.football.api-sports.io"
   }
 }
 

@@ -34,7 +34,7 @@ export const GeneralStats = ({
   }, [selectedLeague, selectedSeason, selectedTeam, handleError])
 
   return <Row gutter={[16, 16]}>
-    <Col span={12}>
+    <Col sm={24} lg={12}>
       <div>
         <Divider>Estatísticas Gerais</Divider>
         <List bordered loading={loading}>
@@ -56,7 +56,7 @@ export const GeneralStats = ({
         </List>
       </div>
     </Col>
-    <Col span={12}>
+    <Col sm={24} lg={12}>
       <GoalsChart
         data={data}
         loading={loading}

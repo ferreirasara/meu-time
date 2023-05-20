@@ -16,9 +16,9 @@ describe('AppHeader', () => {
   });
 
   it('renders info button', () => {
-    const { getByText } = render(<AppHeader />);
+    const { getByTestId } = render(<AppHeader />);
 
-    const infoButton = getByText(/Informações/);
+    const infoButton = getByTestId("info-button");
     expect(infoButton).toBeInTheDocument();
   });
 

@@ -13,7 +13,7 @@ exports[`GeneralStats match snapshot 1`] = `
   }
 >
   <div
-    className="ant-col ant-col-12 css-dev-only-do-not-override-15rg2km"
+    className="ant-col ant-col-sm-24 ant-col-lg-12 css-dev-only-do-not-override-15rg2km"
     style={
       Object {
         "paddingBottom": 8,
@@ -137,7 +137,7 @@ exports[`GeneralStats match snapshot 1`] = `
     </div>
   </div>
   <div
-    className="ant-col ant-col-12 css-dev-only-do-not-override-15rg2km"
+    className="ant-col ant-col-sm-24 ant-col-lg-12 css-dev-only-do-not-override-15rg2km"
     style={
       Object {
         "paddingBottom": 8,

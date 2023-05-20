@@ -58,7 +58,8 @@ exports[`Dashboard match snapshot 1`] = `
         }
       >
         <button
-          className="ant-btn css-dev-only-do-not-override-15rg2km ant-btn-default ant-btn-background-ghost"
+          className="ant-btn css-dev-only-do-not-override-15rg2km ant-btn-default ant-btn-icon-only ant-btn-background-ghost"
+          data-testid="info-button"
           disabled={false}
           onClick={[Function]}
           type="button"
@@ -85,9 +86,6 @@ exports[`Dashboard match snapshot 1`] = `
                 />
               </svg>
             </span>
-          </span>
-          <span>
-            Informações
           </span>
         </button>
       </div>
