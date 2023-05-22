@@ -1,5 +1,7 @@
 # 🌟 Meu Time
 
+<img src="https://wakatime.com/badge/user/e40d157e-ee74-4971-a679-081c59f8d5ba/project/7b5aac45-7ac2-40fe-8014-2c7fa931cfd2.svg?style=flat-square" />
+
 Meu Time is a React and TypeScript project that provides a user interface for viewing football teams information. This project was build as part of an selective process.
 
 ## 🚀 Installation
