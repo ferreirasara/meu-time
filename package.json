@@ -60,7 +60,7 @@
   "devDependencies": {
     "@types/react-test-renderer": "^18.0.0",
     "babel-plugin-named-exports-order": "^0.0.2",
-    "cypress": "^12.10.0",
+    "cypress": "^13.2.0",
     "prop-types": "^15.8.1",
     "webpack": "^5.79.0"
   }
